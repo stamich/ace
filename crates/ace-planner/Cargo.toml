@@ -6,4 +6,6 @@ license.workspace = true
 
 [dependencies]
 ace-core = { path = "../ace-core" }
+ace-transforms = { path = "../ace-transforms" }
 ace-codecs = { path = "../ace-codecs" }
+ace-entropy = { path = "../ace-entropy" }
