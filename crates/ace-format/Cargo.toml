@@ -1,0 +1,9 @@
+[package]
+name = "ace-format"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+ace-core = { path = "../ace-core" }
+crc32c.workspace = true

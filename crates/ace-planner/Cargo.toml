@@ -1,0 +1,9 @@
+[package]
+name = "ace-planner"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+ace-core = { path = "../ace-core" }
+ace-codecs = { path = "../ace-codecs" }

@@ -1,0 +1,12 @@
+[package]
+name = "ace-engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+ace-core = { path = "../ace-core" }
+ace-analysis = { path = "../ace-analysis" }
+ace-codecs = { path = "../ace-codecs" }
+ace-planner = { path = "../ace-planner" }
+ace-format = { path = "../ace-format" }
