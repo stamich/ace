@@ -1,0 +1,17 @@
+[package]
+name = "ace-benchmark-0-2"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+ace-core = { path = "../../crates/ace-core" }
+ace-analysis = { path = "../../crates/ace-analysis" }
+ace-engine = { path = "../../crates/ace-engine" }
+ace-entropy = { path = "../../crates/ace-entropy" }
+ace-planner = { path = "../../crates/ace-planner" }
+serde.workspace = true
+serde_json.workspace = true
+flate2.workspace = true
+lz4_flex.workspace = true
+zstd.workspace = true

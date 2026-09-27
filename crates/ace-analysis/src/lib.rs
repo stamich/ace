@@ -1,4 +1,4 @@
-//! Cheap deterministic block profiling for ACE 0.1.
+//! Deterministic block-statistics collection used by the ACE 0.2 planner.
 
 mod analyzer;
 mod entropy;

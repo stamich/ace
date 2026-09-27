@@ -1,0 +1,9 @@
+[package]
+name = "ace-index"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+ace-core = { path = "../ace-core" }
+ace-format = { path = "../ace-format" }
