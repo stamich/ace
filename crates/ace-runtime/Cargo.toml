@@ -1,0 +1,10 @@
+[package]
+name = "ace-runtime"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+ace-core = { path = "../ace-core" }
+rayon.workspace = true
+num_cpus.workspace = true
