@@ -1,11 +1,9 @@
-//! Shared domain model and stable contracts for ACE.
-//!
-//! This crate intentionally contains no concrete compression implementation. It defines the
-//! format-facing IDs, configuration, errors, block profiles and physical plans used by the other crates.
+//! Shared model, errors, limits and physical-plan types for Adaptive Compression Engine 0.2.
 
 mod block;
 mod codec;
 mod config;
+mod dictionary;
 mod error;
 mod limits;
 mod plan;
@@ -15,6 +13,7 @@ mod stats;
 pub use block::*;
 pub use codec::*;
 pub use config::*;
+pub use dictionary::*;
 pub use error::*;
 pub use limits::*;
 pub use plan::*;

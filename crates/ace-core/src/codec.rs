@@ -1,8 +1,8 @@
 /// Byte-oriented primary codec used by a physical compression plan.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Ord, PartialOrd)]
 #[repr(u8)]
 pub enum CodecId {
-    /// The input is stored verbatim.
+    /// Stores the transformed input bytes verbatim.
     Raw = 0,
     /// Packet run-length encoding.
     Rle = 1,
@@ -25,13 +25,15 @@ impl TryFrom<u8> for CodecId {
 }
 
 /// Optional entropy coder applied after the primary codec.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Ord, PartialOrd)]
 #[repr(u8)]
 pub enum EntropyCodecId {
     /// No entropy coding is applied.
     None = 0,
-    /// Canonical Huffman coding.
+    /// Canonical Huffman coding inherited from ACE 0.1.
     Huffman = 1,
+    /// Scalar 32-bit range Asymmetric Numeral System introduced in ACE 0.2.
+    Rans = 2,
 }
 
 impl TryFrom<u8> for EntropyCodecId {
@@ -42,16 +44,17 @@ impl TryFrom<u8> for EntropyCodecId {
         match value {
             0 => Ok(Self::None),
             1 => Ok(Self::Huffman),
+            2 => Ok(Self::Rans),
             other => Err(crate::AceError::UnsupportedEntropyCodec(other)),
         }
     }
 }
 
 /// Reversible byte transformation applied before the primary codec.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Ord, PartialOrd)]
 #[repr(u8)]
 pub enum TransformId {
-    /// No transform.
+    /// No transform. This identifier is reserved and is normally omitted from a plan.
     None = 0,
     /// Byte-wise delta transform using wrapping subtraction.
     DeltaByte = 1,
@@ -71,7 +74,7 @@ impl TryFrom<u8> for TransformId {
 }
 
 /// Encoder-side LZ search strategy. Both variants produce the same wire format.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Ord, PartialOrd)]
 pub enum LzMode {
     /// Checks only the most recent hashed candidate.
     Fast,
