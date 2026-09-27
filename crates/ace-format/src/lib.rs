@@ -1,14 +1,14 @@
-//! ACE file-format v1 reader and writer.
+//! ACE format 1.0/1.1 framing, block-index serialization and corruption checks.
 
 mod header;
+mod index;
 mod reader;
 mod writer;
 
 pub use header::*;
+pub use index::*;
 pub use reader::*;
 pub use writer::*;
 
-/// Returns CRC32C of a byte slice.
-pub fn checksum(data: &[u8]) -> u32 {
-    crc32c::crc32c(data)
-}
+/// Computes CRC32C for ACE headers, indexes and reconstructed block payloads.
+pub fn checksum(bytes: &[u8]) -> u32 { crc32c::crc32c(bytes) }

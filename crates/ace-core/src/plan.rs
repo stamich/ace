@@ -41,14 +41,39 @@ pub struct CostWeights {
 
 impl CostWeights {
     /// Returns deterministic weights for a high-throughput encoder.
-    pub fn fast() -> Self { Self { size: 25, encode_cpu: 45, decode_cpu: 25, memory: 5 } }
+    pub fn fast() -> Self {
+        Self {
+            size: 25,
+            encode_cpu: 45,
+            decode_cpu: 25,
+            memory: 5,
+        }
+    }
     /// Returns deterministic balanced weights.
-    pub fn balanced() -> Self { Self { size: 55, encode_cpu: 20, decode_cpu: 20, memory: 5 } }
+    pub fn balanced() -> Self {
+        Self {
+            size: 55,
+            encode_cpu: 20,
+            decode_cpu: 20,
+            memory: 5,
+        }
+    }
     /// Returns deterministic weights favoring compressed size.
-    pub fn dense() -> Self { Self { size: 80, encode_cpu: 8, decode_cpu: 8, memory: 4 } }
+    pub fn dense() -> Self {
+        Self {
+            size: 80,
+            encode_cpu: 8,
+            decode_cpu: 8,
+            memory: 4,
+        }
+    }
     /// Maps a public compression profile to its deterministic cost weights.
     pub fn for_profile(profile: CompressionProfile) -> Self {
-        match profile { CompressionProfile::Fast => Self::fast(), CompressionProfile::Balanced => Self::balanced(), CompressionProfile::Dense => Self::dense() }
+        match profile {
+            CompressionProfile::Fast => Self::fast(),
+            CompressionProfile::Balanced => Self::balanced(),
+            CompressionProfile::Dense => Self::dense(),
+        }
     }
 }
 
@@ -71,7 +96,12 @@ impl PhysicalCompressionPlan {
     /// Creates the universal RAW fallback plan.
     pub fn raw() -> Self {
         Self {
-            decoding: DecodingPlan { transforms: Vec::new(), codec: CodecId::Raw, dictionary: None, entropy: EntropyCodecId::None },
+            decoding: DecodingPlan {
+                transforms: Vec::new(),
+                codec: CodecId::Raw,
+                dictionary: None,
+                entropy: EntropyCodecId::None,
+            },
             lz_mode: None,
             cost: PlanCost::default(),
             score: 0,
